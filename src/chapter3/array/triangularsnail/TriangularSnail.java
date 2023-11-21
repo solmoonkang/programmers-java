@@ -56,7 +56,31 @@ public class TriangularSnail {
             if (triangle[y - 1][x - 1] != 0) break;
             x -= 1;
             y -= 1;
+
+            // 왼쪽 위로 이동
+            while (true) {
+                // 마찬가지로 같은 원리로 x, y 값만 바꾸어 주면 된다.
+                triangle[y][x] = v++;
+                if (triangle[y - 1][x - 1] != 0) break;
+                x -= 1;
+                y -= 1;
+            }
+            if (y + 1 == n || triangle[y + 1][x] != 0) break;
+            y += 1;
         }
+
+        // triangle에 모든 숫자들이 채워지고, 채운 숫자들을 1차원 배열로 구성해서 반환한다.
+        // v 변수에는 마지막에 채워 놓은 숫자 +1이 들어 있으므로 v - 1이 채워 넣은 숫자 개수가 된다.
+        int[] result = new int[v - 1];
+
+        // 2차원 배열에서는 삼각형이 왼쪽으로 몰려 있는 직각 삼각형으로 들어있다는 것을 이용하여 이중 반복문으로 1차원 배열에 숫자를 넣어줄 수 있다.
+        int index = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                result[index++] = triangle[i][j];
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {
