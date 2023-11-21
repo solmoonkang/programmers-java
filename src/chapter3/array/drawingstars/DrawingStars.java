@@ -76,6 +76,20 @@ public class DrawingStars {
         return new Point(x, y);
     }
 
+    private Point getMaximumPoint(List<Point> points) {
+        // getMinimumPoint() 메서드와 마찬가지로 구현해준다.
+        // 단, x, y의 초기값과 for문 내 비교 연산자의 방향을 반대로 설정해준다.
+        long x = Long.MIN_VALUE;
+        long y = Long.MIN_VALUE;
+
+        for (Point p : points) {
+            if (p.x > x) x = p.x;
+            if (p.y > y) y = p.y;
+        }
+
+        return new Point(x, y);
+    }
+
     public String[] solution(int[][] line) {
         List<Point> points = new ArrayList<>();
 
