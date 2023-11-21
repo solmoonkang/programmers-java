@@ -1,5 +1,7 @@
 package chapter3.array.triangularsnail;
 
+import java.util.Arrays;
+
 public class TriangularSnail {
 
     /**
@@ -83,7 +85,23 @@ public class TriangularSnail {
         return result;
     }
 
+
+    // dx와 dy는 각각 'x의 변화량'과 'y의 변화량'을 의미한다. 이는 int[] dx, dy = {아래, 오른쪽, 왼쪽 위}; 가 된다.
+    private static final int[] dx = {0, -1, 1};
+    private static final int[] dy = {1, -1, 0};
+    public int[] improvedCode(int n) {
+        int[][] triangle = new int[n][n];
+        // 배열 dx, dy의 인덱스는 방향을 가리킨다. 이 방향은 숫자를 채워 나감에 따라 변하므로 위치 변수와 함께 방향 변수(int d)를 추가한다.
+        int v = 1;
+        int x = 0;
+        int y = 0;
+        int d = 0;
+        
+    }
+
     public static void main(String[] args) {
         TriangularSnail snail = new TriangularSnail();
+        System.out.println("Result: " + Arrays.toString(snail.improvedCode(4)));
+        System.out.println("Result: " + Arrays.toString(snail.improvedCode(6)));
     }
 }
