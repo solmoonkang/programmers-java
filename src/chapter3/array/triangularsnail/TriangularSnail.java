@@ -47,9 +47,15 @@ public class TriangularSnail {
             x += 1;
 
             // 오른쪽으로 이동
-
-
-            // 왼쪽 위로 이동
+            while (true) {
+                // 마찬가지로 같은 원리로 x, y 값만 바꾸어 주면 된다.
+                triangle[y][x] = v++;
+                if (x + 1 == n || triangle[y][x + 1] != 0) break;
+                x += 1;
+            }
+            if (triangle[y - 1][x - 1] != 0) break;
+            x -= 1;
+            y -= 1;
         }
     }
 
