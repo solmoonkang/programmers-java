@@ -44,6 +44,21 @@ public class DrawingStars {
         }
     }
 
+    // 두 직선의 교점을 구하는 메서드이다. (두 직선의 정보를 매개변수로, 해당 교점이 정수이면 Point 객체를 반환한다.)
+    private Point intersection(long a1, long b1, long c1,
+                               long a2, long b2, long c2) {
+        // a1x + b1y + c1 = 0, a2x + b2y + c2 = 0 다음과 같은 두 직선이 있다고 가정하자.
+
+        // 두 직선의 교점은 아래와 같이 계산된다.
+        double x = (double) (b1 * c2 - b2 * c1) / (a1 * b2 - a2 * b1);
+        double y = (double) (a2 * c1 - a1 * c2) / (a1 * b2 - a2 * b1);
+
+        // 두 직선의 교점을 구한 뒤, 해당 교점이 정수일 경우에만 반환하도록 한다. 그렇지 않을 경우에는 null을 반환한다.
+        if (x % 1 != 0 || y % 1 != 0) return null;
+
+        return new Point((long) x, (long) y);
+    }
+
     public static void main(String[] args) {
 
     }
