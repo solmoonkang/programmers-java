@@ -134,6 +134,15 @@ public class DrawingStars {
             // y 좌표로 먼저 접근한 후, x 좌표로 접근해야 한다.
             arr[y][x] = '*';
         }
+
+        // 마지막으로 문자열 배열로 변환하여 반환해야 한다.
+        // 이는 String 배열을 선언한 후 2차원 배열을 구성하는 1차원 배열들을 String으로 변환해준다.
+        String[] result = new String[arr.length];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = new String(arr[i]);
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {
