@@ -1,5 +1,8 @@
 package chapter3.array.drawingstars;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DrawingStars {
 
     /*
@@ -59,7 +62,38 @@ public class DrawingStars {
         return new Point((long) x, (long) y);
     }
 
-    public static void main(String[] args) {
+    // 저장된 정수들에 대해 x, y 좌표의 최솟값을 구하는 메서드이다.
+    private Point getMinimumPoint(List<Point> points) {
+        // points list 안의 모든 Point 객체를 순회하면서 가장 작은 x, y 값을 찾고, 이를 사용하여 Point 객체를 만들어 반환한다.
+        long x = Long.MAX_VALUE;
+        long y = Long.MAX_VALUE;
 
+        for (Point p : points) {
+            if (p.x < x) x = p.x;
+            if (p.y < y) y = p.y;
+        }
+
+        return new Point(x, y);
+    }
+
+    public String[] solution(int[][] line) {
+        List<Point> points = new ArrayList<>();
+
+        for (int i = 0; i < line.length; i++) {
+            for (int j = i + 1; j < line.length; j++) {
+                Point intersection = intersection(
+                        line[i][0], line[i][1], line[i][2],
+                        line[j][0], line[j][1], line[i][2]
+                );
+
+                if (intersection != null) {
+                    points.add(intersection);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        // TODO:
     }
 }
