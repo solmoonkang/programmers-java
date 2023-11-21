@@ -89,6 +89,7 @@ public class TriangularSnail {
     // dx와 dy는 각각 'x의 변화량'과 'y의 변화량'을 의미한다. 이는 int[] dx, dy = {아래, 오른쪽, 왼쪽 위}; 가 된다.
     private static final int[] dx = {0, -1, 1};
     private static final int[] dy = {1, -1, 0};
+
     public int[] improvedCode(int n) {
         int[][] triangle = new int[n][n];
         // 배열 dx, dy의 인덱스는 방향을 가리킨다. 이 방향은 숫자를 채워 나감에 따라 변하므로 위치 변수와 함께 방향 변수(int d)를 추가한다.
@@ -110,7 +111,7 @@ public class TriangularSnail {
             // nx == n || ny == n 의 경우, 아래 방향이나 오른쪽으로 진행할 때의 조건이다.
             // nx == -1 || ny == -1 의 경우, 왼쪽 위로 진행할 때의 조건이다.
             // triangle[nx][ny] != 0 의 경우, 이미 숫자가 써있는 칸에 도달했음을 검사한다.
-            if (nx == n || ny == n || nx == -1 || ny == -1 || triangle[nx][ny] != 0) {
+            if (nx == n || ny == n || nx == -1 || ny == -1 || triangle[ny][nx] != 0) {
                 // 위의 조건에 걸리면 현재 진행 방향으로 더 이상 진행할 수 없다는 의미이다. 따라서, 진행 방향을 바꾸어 주어야 한다.
                 // 현재 dx, dy를 구성하는 방향은 아래, 오른쪽, 왼쪽 위 순서로 구성되며, 방향 변수 d의 값을 1 증가시키는 것으로 방향을 바꿀 수 있다.
                 // 또한, 방향 개수가 3개이므로 나머지 연산을 이용하여 왼쪽 위에서 아래 방향으로 전환될 수 있게 한다.
@@ -121,16 +122,23 @@ public class TriangularSnail {
                 ny = y + dy[d];
 
                 // 모든 숫자가 다 채워졌을 경우, 전환된 방향으로도 진행을 못한다. 해당 경우에는 break; 를 통해 숫자 채우기를 종료한다.
-                if (nx == n || ny == n || nx == -1 || ny == -1 || triangle[nx][ny] != 0) {
-                    break;
-                }
-                // if 문이 종료되고 나면 nx, ny에는 진행할 수 있는 방향 위치가 들어있다. 따라서, 다음과 같이 현재 위치를 업데이트한다.
-                x = nx;
-                y = ny;
+                if (nx == n || ny == n || nx == -1 || ny == -1 || triangle[ny][nx] != 0) break;
             }
-
-
+            // if 문이 종료되고 나면 nx, ny에는 진행할 수 있는 방향 위치가 들어있다. 따라서, 다음과 같이 현재 위치를 업데이트한다.
+            x = nx;
+            y = ny;
         }
+
+        int[] result = new int[v - 1];
+
+        // 2차원 배열에서는 삼각형이 왼쪽으로 몰려 있는 직각 삼각형으로 들어있다는 것을 이용하여 이중 반복문으로 1차원 배열에 숫자를 넣어줄 수 있다.
+        int index = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                result[index++] = triangle[i][j];
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {
