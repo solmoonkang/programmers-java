@@ -30,11 +30,15 @@ public class CheckDistancing {
 
     // (x, y)위치에 있는 응시자가 거리두기를 지키고 있는지 검사하려면 먼저 상하좌우를 검사해야 한다.
     // 상하좌우 검사를 위해 다음과 같이 dx, dy 를 선언한다.
-    private static final int dx[] = {0, 0, -1, 1};
-    private static final int dy[] = {-1, 1, 0, 0};
+    // 해당 문제에서 방향은 순서가 없으므로, 검사하는 순서가 상관없다. 따라서 상하좌우에서 상좌우하 방향으로 dx, dy를 수정해준다.
+        // 기존 상하좌우 dx[] = {0, 0, -1, 1}, dy[] = {-1, 1, 0, 0}
+    private static final int dx[] = {0, -1, 1, 0};
+    private static final int dy[] = {-1, 0, 0, 1};
 
     // 원래 검사를 시작했던 응시자는 제외해야 하기 때문에 해당 방향으로는 검사를 진행하지 말아야 한다.
     // 따라서, 검사를 제외할 방향(exclude)도 함께 넘겨주어야 한다.
+    // 그러나, isNextToVolunteer 메서드에서 알고 있는 정보는 (x, y)에서의 진행 방향 정보이다.
+    // 우리가 제외해야 할 방향은 그 반대 방향이므로 방향 d를 이용해서 반대 방향 exclude를 계산해야 한다.
     private boolean isNextToVolunteer(char[][] room, int x, int y, int exclude) {
         for (int d= 0; d < 4; d++) {
             if (d == exclude) continue;
@@ -67,10 +71,11 @@ public class CheckDistancing {
                 case 'P': return false;
                 // 'O': 빈 테이블일 경우, 인접한 곳에 다른 응시자가 있다면 거리두기가 지켜지지 않은 것이다.
                 case 'O':
-                    // 인접한 곳에 다른 응시자가 있는지 검사한다.
+                    if (isNextToVolunteer(room, nx, ny, 3-d)) return false;
                     break;
             }
         }
+        return true;
     }
 
     // 하나의 대기실은 char[][] room으로 표현되었다. 해당 대기실이 거리두기를 지키고 있는지 검사하는 메서드이다.
