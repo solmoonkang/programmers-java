@@ -28,6 +28,17 @@ public class CheckDistancing {
      * 2. 모든 응시자의 위치를 검사했으나 거리두기를 지키지 않은 경우를 발견하지 못했으면 거리두기를 지킨 것이다.
      */
 
+    // 하나의 대기실은 char[][] room으로 표현되었다. 해당 대기실이 거리두기를 지키고 있는지 검사하는 메서드이다.
+    private boolean isDistanced(char[][] room) {
+        // 대기실의 모든 응시자의 위치에 대한 반복을 위해 응시자들이 앉아 있지 않는 자리는 continue; 를 통해 검사를 건너뛰도록 한다.
+        for (int y = 0; y < room.length; y++) {
+            for (int x = 0; x < room[y].length; x++) {
+                if (room[y][x] != 'P') continue;
+                // 거리두기 검사
+            }
+        }
+    }
+
     public int[] solution(String[][] places) {
         // 입력이 String[][] 형식으로 들어오고, 대기실 하나는 String[] 형식이 된다.
         // 각 원소에 관심이 있고, 각 대기실이 거리두기를 지키는지 검사할 것이므로 대기실을 char[][] 형식으로 만들어 거리두기 결과를 저장할 배열을 선언한다.
