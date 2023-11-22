@@ -28,6 +28,36 @@ public class CheckDistancing {
      * 2. 모든 응시자의 위치를 검사했으나 거리두기를 지키지 않은 경우를 발견하지 못했으면 거리두기를 지킨 것이다.
      */
 
+    // (x, y)위치에 있는 응시자가 거리두기를 지키고 있는지 검사하려면 먼저 상하좌우를 검사해야 한다.
+    // 상하좌우 검사를 위해 다음과 같이 dx, dy 를 선언한다.
+    private static final int dx[] = {0, 0, -1, 1};
+    private static final int dy[] = {-1, 1, 0, 0};
+
+    // 해당 대기실에서 응시자의 위치(x, y)가 거리두기를 지키는지 검사하는 메서드이다.
+    private boolean isDistanced(char[][] room, int x, int y) {
+        // 위의 dx, dy 를 통해 상하좌우 위치를 가져오고, 해당 위치가 범위를 벗어나지 않는지 검사한다.
+        for (int d= 0; d < 4; d++) {
+            int nx = x + dx[d];
+            int ny = y + dy[d];
+
+            // 2차원 배열의 length 필드를 이용해 범위 검사를 할 때는 y속성을 x속성보다 먼저 검사해야 안전하다.
+            // 자바의 OR(||) 연산은 앞선 조건이 true이면, 뒤 조건을 연산하지 않는다.
+            if (ny < 0 || ny >= room.length || nx < 0 || nx >= room[ny].length) continue;
+
+            // room[ny][nx]를 통해 다른 응시자에게 도달할 수 있는지 검사한다.
+            // room[ny][nx]은 세 가지 중 하나의 값을 가지고 있다.
+            switch (room[ny][nx]) {
+                // 'X': 파티션일 경우, 이 위치를 이용하여 다른 응시자에게 도달할 수 없으므로 별도의 처리가 필요하지 않다.
+                // 'P': 응시자일 경우, 맨해튼 거리 1에 다른 응시자가 있는 것이므로 거리두기가 지켜지지 않은 것이다.
+                case 'P': return false;
+                // 'O': 빈 테이블일 경우, 인접한 곳에 다른 응시자가 있다면 거리두기가 지켜지지 않은 것이다.
+                case 'O':
+                    // 인접한 곳에 다른 응시자가 있는지 검사한다.
+                    break;
+            }
+        }
+    }
+
     // 하나의 대기실은 char[][] room으로 표현되었다. 해당 대기실이 거리두기를 지키고 있는지 검사하는 메서드이다.
     private boolean isDistanced(char[][] room) {
         // 대기실의 모든 응시자의 위치에 대한 반복을 위해 응시자들이 앉아 있지 않는 자리는 continue; 를 통해 검사를 건너뛰도록 한다.
