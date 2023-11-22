@@ -1,5 +1,7 @@
 package chapter3.array.checkdistancing;
 
+import java.util.Arrays;
+
 public class CheckDistancing {
 
     /**
@@ -101,7 +103,11 @@ public class CheckDistancing {
             for (int j = 0; j < room.length; j++) {
                 room[j] = place[j].toCharArray();
             }
-            // 거리두기 검사 후 answer에 기록한다.
+            if (isDistanced(room)) {
+                answer[i] = 1;
+            } else {
+                answer[i] = 0;
+            }
         }
         return answer;
     }
@@ -114,6 +120,6 @@ public class CheckDistancing {
                 {"PXOPX", "OXOXP", "OXPOX", "OXXOP", "PXPOX"},
                 {"OOOXX", "XOOOX", "OOOXX", "OXOOX", "OOOOO"},
                 {"PXPXP", "XPXPX", "PXPXP", "XPXPX", "PXPXP"}};
-        System.out.println("Result: " + distancing);
+        System.out.println("Result: " + Arrays.toString(distancing.solution(places)));
     }
 }
