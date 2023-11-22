@@ -84,9 +84,10 @@ public class CheckDistancing {
         for (int y = 0; y < room.length; y++) {
             for (int x = 0; x < room[y].length; x++) {
                 if (room[y][x] != 'P') continue;
-                // 거리두기 검사
+                if (!isDistanced(room, x, y)) return false;
             }
         }
+        return true;
     }
 
     public int[] solution(String[][] places) {
