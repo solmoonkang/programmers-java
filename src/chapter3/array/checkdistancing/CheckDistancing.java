@@ -33,6 +33,21 @@ public class CheckDistancing {
     private static final int dx[] = {0, 0, -1, 1};
     private static final int dy[] = {-1, 1, 0, 0};
 
+    // 원래 검사를 시작했던 응시자는 제외해야 하기 때문에 해당 방향으로는 검사를 진행하지 말아야 한다.
+    // 따라서, 검사를 제외할 방향(exclude)도 함께 넘겨주어야 한다.
+    private boolean isNextToVolunteer(char[][] room, int x, int y, int exclude) {
+        for (int d= 0; d < 4; d++) {
+            if (d == exclude) continue;
+
+            int nx = x + dx[d];
+            int ny = y + dy[d];
+
+            if (ny < 0 || ny >= room.length || nx < 0 || nx >= room[ny].length) continue;
+            if (room[ny][nx] == 'P') return true;
+        }
+        return false;
+    }
+
     // 해당 대기실에서 응시자의 위치(x, y)가 거리두기를 지키는지 검사하는 메서드이다.
     private boolean isDistanced(char[][] room, int x, int y) {
         // 위의 dx, dy 를 통해 상하좌우 위치를 가져오고, 해당 위치가 범위를 벗어나지 않는지 검사한다.
