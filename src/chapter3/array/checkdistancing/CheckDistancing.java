@@ -29,7 +29,19 @@ public class CheckDistancing {
      */
 
     public int[] solution(String[][] places) {
+        // 입력이 String[][] 형식으로 들어오고, 대기실 하나는 String[] 형식이 된다.
+        // 각 원소에 관심이 있고, 각 대기실이 거리두기를 지키는지 검사할 것이므로 대기실을 char[][] 형식으로 만들어 거리두기 결과를 저장할 배열을 선언한다.
+        int[] answer = new int[places.length];
 
+        for (int i = 0; i < answer.length; i++) {
+            String[] place = places[i];
+            char[][] room = new char[place.length][];
+            for (int j = 0; j < room.length; j++) {
+                room[j] = place[j].toCharArray();
+            }
+            // 거리두기 검사 후 answer에 기록한다.
+        }
+        return answer;
     }
 
     public static void main(String[] args) {
