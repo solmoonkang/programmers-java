@@ -19,6 +19,9 @@ public class CaesarCipher {
     // 문자 c를 n만큼 민 새로운 문자를 계산하기 위해 메서드를 분리한다.
     // 입력 문자를 n만큼 민 문자를 반환하는 push() 메서드를 선언한다.
     private char push(char c, int n) {
+        // 알파벳이 아닌 문자는 시저 암호에 영향을 받지 않으므로 isAlphabetic() 메서드를 사용하여 알파벳이 아닌 문자는 그대로 반환될 수 있게 한다.
+        if (!Character.isAlphabetic(c)) return c;
+
         // c를 n만큼 밀어 반환한다.
     }
 
