@@ -44,6 +44,8 @@ public class StrangeString {
                 } else {
                     builder.append(Character.toLowerCase(c));
                 }
+                // 현재 문자를 대문자 혹은 소문자로 변환했으므로, 단어의 다음 문자는 그 반대로 변환되어야 한다. 따라서, toUpper 값을 반전시켜 준다.
+                toUpper = !toUpper;
             }
         }
 
