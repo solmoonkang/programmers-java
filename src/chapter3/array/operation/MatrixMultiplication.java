@@ -17,7 +17,14 @@ public class MatrixMultiplication {
         // 행렬의 곱셈은 왼쪽 행렬의 행과 오른쪽 행렬의 열이 짝을 이루어서 수행한다.
         // 왼쪽 행렬은 행 단위로, 오른쪽 행렬은 열 단위로 계산되며 같은 순서에 있는 숫자끼리 곱해서 더하면 된다.
         int[][] arr = new int[arr1.length][arr2[0].length];
-        // 행렬 곱셈
+
+        // 반복문을 돌며, 각 원소에 알맞은 값을 찾는다.
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr1[i].length; j++) {
+                // arr[i][j]의 값을 구하는 코드를 구현한다.
+            }
+        }
+
         return arr;
     }
 
