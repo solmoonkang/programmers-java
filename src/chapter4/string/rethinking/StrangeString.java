@@ -30,7 +30,8 @@ public class StrangeString {
         for (char c : s.toCharArray()) {
             // 검사하는 문자가 공백 문자일 경우에 대해 검사한다. Character 클래스의 문자가 알파벳인지 검사하는 isAlphabetic() 메서드를 사용한다.
             if (!Character.isAlphabetic(c)) {
-                // 공백 처리
+                // 공백 문자는 별도의 변환 과정 없이 그대로 이어 붙여야 한다. 알파벳 검사에 통과하지 못한 문자들은 builder에 그대로 이어 붙인다.
+                builder.append(c);
             } else {
                 // 알파벳 변환
             }
