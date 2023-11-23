@@ -26,14 +26,18 @@ public class StrangeString {
     public String solution(String s) {
         // 문자열 구성을 위한 StringBuilder 클래스와 문자 순회 루프를 구현한다.
         StringBuilder builder = new StringBuilder();
+        // 알파벳이 대문자로, 소문자로 변환되어야 할지 나타내는 toUpper 변수를 선언하여 대소문자 상태를 가지고 있는다.
+        boolean toUpper = true;
 
         for (char c : s.toCharArray()) {
             // 검사하는 문자가 공백 문자일 경우에 대해 검사한다. Character 클래스의 문자가 알파벳인지 검사하는 isAlphabetic() 메서드를 사용한다.
             if (!Character.isAlphabetic(c)) {
                 // 공백 문자는 별도의 변환 과정 없이 그대로 이어 붙여야 한다. 알파벳 검사에 통과하지 못한 문자들은 builder에 그대로 이어 붙인다.
                 builder.append(c);
+                // 이제 공백 문자를 만나면 toUpper 변수를 true로 설정하여 다음 만나는 알파벳이 대문자로 변환될 수 있도록 한다.
+                toUpper = true;
             } else {
-                // 알파벳 변환
+                // 공백 문자가 등장했다면 다음 등장 알파벳은 단어의 시작이므로 무조건 대문자로 변환되어야 한다.
             }
         }
 
