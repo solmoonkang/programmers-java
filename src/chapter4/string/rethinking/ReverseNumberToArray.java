@@ -21,6 +21,8 @@ public class ReverseNumberToArray {
         String str = Long.toString(n);
         // StringBuilder 클래스를 이용해서 문자열을 뒤집는다.
         String reversed = new StringBuilder(str).reverse().toString();
+        // 뒤집힌 문자열은 String 클래스의 toCharArray() 메서드를 사용하여 문자 배열로 변환할 수 있다.
+        char[] arr = reversed.toCharArray();
     }
 
     public static void main(String[] args) {
