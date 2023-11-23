@@ -21,7 +21,11 @@ public class MatrixMultiplication {
         // 반복문을 돌며, 각 원소에 알맞은 값을 찾는다.
         for (int i = 0; i < arr1.length; i++) {
             for (int j = 0; j < arr1[i].length; j++) {
-                // arr[i][j]의 값을 구하는 코드를 구현한다.
+                arr[i][j] = 0;
+                // 행렬의 곱셈 결과는 곱해지는 두 행렬의 행과 열을 순회하면서 곱한 값들을 모두 더해줘야 한다.
+                for (int k = 0; k < arr1[i].length; k++) {
+                    arr[i][j] += arr1[i][k] * arr2[k][j];
+                }
             }
         }
 
@@ -30,8 +34,12 @@ public class MatrixMultiplication {
 
     public static void main(String[] args) {
         MatrixMultiplication multiplication = new MatrixMultiplication();
-        int[][] arr1 = {{1, 4}, {3, 2}, {4, 1}};
-        int[][] arr2 = {{3, 3}, {3, 3}};
-        System.out.println("Result: " + Arrays.deepToString(multiplication.solution(arr1, arr2)));
+        int[][] firstArr1 = {{1, 4}, {3, 2}, {4, 1}};
+        int[][] firstArr2 = {{3, 3}, {3, 3}};
+        System.out.println("Result: " + Arrays.deepToString(multiplication.solution(firstArr1, firstArr2)));
+
+        int[][] secondArr1 = {{2, 3, 2}, {4, 2, 4}, {3, 1, 4}};
+        int[][] secondArr2 = {{5, 4, 3}, {2, 4, 1}, {3, 1, 1}};
+        System.out.println("Result: " + Arrays.deepToString(multiplication.solution(secondArr1, secondArr2)));
     }
 }
