@@ -19,6 +19,8 @@ public class ReverseNumberToArray {
         // 입력받은 숫자를 문자열로 변환한다.
         // 이는 정수 long형의 wrapper class인 Long의 static 메서드인 toString()을 사용한다.
         String str = Long.toString(n);
+        // StringBuilder 클래스를 이용해서 문자열을 뒤집는다.
+        String reversed = new StringBuilder(str).reverse().toString();
     }
 
     public static void main(String[] args) {
