@@ -38,6 +38,12 @@ public class StrangeString {
                 toUpper = true;
             } else {
                 // 공백 문자가 등장했다면 다음 등장 알파벳은 단어의 시작이므로 무조건 대문자로 변환되어야 한다.
+                // 따라서 toUpper를 사용하여 문자의 대소문자를 변환하고, StringBuilder 객체에 이어 붙인다. 그리고 문자의 대소문자 여부를 변경한다.
+                if (toUpper) {
+                    builder.append(Character.toUpperCase(c));
+                } else {
+                    builder.append(Character.toLowerCase(c));
+                }
             }
         }
 
