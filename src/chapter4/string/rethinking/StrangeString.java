@@ -28,7 +28,12 @@ public class StrangeString {
         StringBuilder builder = new StringBuilder();
 
         for (char c : s.toCharArray()) {
-            // c를 적절히 변환하여 builder에 추가한다.
+            // 검사하는 문자가 공백 문자일 경우에 대해 검사한다. Character 클래스의 문자가 알파벳인지 검사하는 isAlphabetic() 메서드를 사용한다.
+            if (!Character.isAlphabetic(c)) {
+                // 공백 처리
+            } else {
+                // 알파벳 변환
+            }
         }
 
         return builder.toString();
