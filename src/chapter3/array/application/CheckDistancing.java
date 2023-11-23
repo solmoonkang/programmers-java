@@ -1,4 +1,4 @@
-package chapter3.array.checkdistancing;
+package chapter3.array.application;
 
 import java.util.Arrays;
 

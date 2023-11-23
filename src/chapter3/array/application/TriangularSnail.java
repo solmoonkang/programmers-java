@@ -1,4 +1,4 @@
-package chapter3.array.triangularsnail;
+package chapter3.array.application;
 
 import java.util.Arrays;
 
