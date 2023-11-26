@@ -44,10 +44,30 @@ public class StringCompression {
     private int compress(String source, int length) {
         // 문자열을 구성할 StringBuilder 객체를 생성한다.
         StringBuilder builder = new StringBuilder();
+        // 연속으로 중복된 문자열들을 검사해야 하므로 직전에 등장한 문자열을 담는 last 변수를 선언한다.
+        String last = "";
+        // 또한, 그 등장 횟수를 담는 count 변수를 선언한다.
+        int count = 0;
 
         for (String token : split(source, length)) {
-            // 압축 문자열을 구성한다.
+            // 현재 검사하는 문자열 token이 직전에 등장한 문자열과 같다면, 등장횟수를 증가시켜준다.
+            if (token.equals(last)) {
+                count++;
+            // 새로운 토큰 등장을 처리한다.
+            } else {
+                // 등장 횟수 count는 2 이상일 때만 압축 문자열에 포함되고,
+                if (count > 1) builder.append(count);
+                // 압축 문자열을 구성한 후에는 현재 검사한 token부터 다시 셀 수 있도록 last와 count를 업데이트한다.
+                builder.append(last);
+                last = token;
+                count = 1;
+            }
         }
+        // 이렇게 for문을 나오면, 아직 마지막 토근은 last에 담긴 채로 압축 문자열에 포함되지 않은 상태이다.
+        // 따라서, 압축 문자열을 구성하는 로직을 for문 이후에 1회 더 추가해야 한다.
+        if (count > 1) builder.append(count);
+        builder.append(last);
+
         return builder.length();
     }
 
