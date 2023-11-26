@@ -77,6 +77,10 @@ public class StringCompression {
         // 자를 문자열의 길이를 반복문을 이용하여 설정한다.
         for (int length = 1; length <= s.length(); length++) {
             // 문자열 압축 후 가장 짧은 길이를 선택한다.
+            int compressed = compress(s, length);
+            if (compressed < min) {
+                min = compressed;
+            }
         }
         return min;
     }
