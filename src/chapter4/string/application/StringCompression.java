@@ -1,5 +1,8 @@
 package chapter4.string.application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCompression {
 
     /**
@@ -21,10 +24,31 @@ public class StringCompression {
      * 4. 1~3 과정으로 압축된 문자열 중 가장 짧은 길이를 반환한다.
      */
 
+    // compress 메서드에서 압축하기 위해서는 length 길이씩 문자열을 잘라야 한다.
+    // 문자열을 length 길이씩 잘라 리스트에 추가하는 split() 메서드이다.
+    private List<String> split(String source, int length) {
+        List<String> tokens = new ArrayList<>();
+
+        // source를 length 길이만큼씩 잘라서 tokens 리스트에 추가한다.
+        for (int startIndex = 0; startIndex < source.length(); startIndex += length) {
+            int endIndex = startIndex + length;
+            // 해당 범위가 문자열 범위 밖이라면 문자열의 끝까지 정상적으로 잘릴 수 있도록 다음과 같이 설정한다.
+            if (endIndex > source.length()) endIndex = source.length();
+            // 문자열을 startIndex로 잘라서 tokens 리스트에 추가한다.
+            tokens.add(source.substring(startIndex, endIndex));
+        }
+        return tokens;
+    }
 
     // 문자열을 압축하고, 압축된 문자열의 길이를 반환하는 compress() 메서드이다.
     private int compress(String source, int length) {
-        // 압축한 문자열의 길이를 반환한다.
+        // 문자열을 구성할 StringBuilder 객체를 생성한다.
+        StringBuilder builder = new StringBuilder();
+
+        for (String token : split(source, length)) {
+            // 압축 문자열을 구성한다.
+        }
+        return builder.length();
     }
 
     public int solution(String s) {
