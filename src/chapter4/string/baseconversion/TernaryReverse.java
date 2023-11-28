@@ -16,6 +16,8 @@ public class TernaryReverse {
     public int solution(int n) {
         // 정수를 3진법으로 변환한다.
         String str = Integer.toString(n, 3);
+        // 변환된 문자열을 StringBuilder를 이용하여 문자열을 뒤집어 준다.
+        String reversed = new StringBuilder(str).reverse().toString();
     }
 
     public static void main(String[] args) {
