@@ -24,6 +24,17 @@ public class BinaryConversionRepeat {
      *  B. 나머지 1의 개수를 사용해서 2진법으로 변환하여 1부터 반복한다.
      * 2. 누적된 제거 횟수와 0의 개수를 배열로 반환한다.
      */
+    // 0의 개수를 세기 위해 문자열을 전달받아 0의 개수를 세는 메서드이다.
+    private int countZeros(String s) {
+        int zeros = 0;
+        // 문자열에 포함된 0의 개수를 센다.
+        for (char c : s.toCharArray()) {
+            if (c == '0') zeros++;
+        }
+        return zeros;
+    }
+
+
     public int[] solution(String s) {
         // 변환 횟수와 제거된 0의 개수를 담는 변수를 선언한다.
         int loop = 0;
