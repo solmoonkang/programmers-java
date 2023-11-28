@@ -18,6 +18,8 @@ public class TernaryReverse {
         String str = Integer.toString(n, 3);
         // 변환된 문자열을 StringBuilder를 이용하여 문자열을 뒤집어 준다.
         String reversed = new StringBuilder(str).reverse().toString();
+        // 뒤집은 문자열을 다시 3진법에서 정수로 변환하여 반환한다.
+        return Integer.valueOf(reversed, 3);
     }
 
     public static void main(String[] args) {
