@@ -46,7 +46,10 @@ public class BinaryConversionRepeat {
             loop += 1;
             removed += zeros;
 
-
+            // 0의 개수를 알고 있으므로 1의 개수도 구할 수 있다.
+            int ones = s.length() - zeros;
+            // 또한 구한 1의 개수를 2진법으로 변환하여 s를 변환할 수 있다.
+            s = Integer.toString(ones, 2);
         }
 
         return new int[] {loop, removed};
