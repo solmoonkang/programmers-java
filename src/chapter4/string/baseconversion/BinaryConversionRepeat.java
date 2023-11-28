@@ -34,7 +34,6 @@ public class BinaryConversionRepeat {
         return zeros;
     }
 
-
     public int[] solution(String s) {
         // 변환 횟수와 제거된 0의 개수를 담는 변수를 선언한다.
         int loop = 0;
@@ -42,7 +41,12 @@ public class BinaryConversionRepeat {
 
         // s가 "1"이 될 때까지 반복한다.
         while (!s.equals("1")) {
-            // s를 변환하며, loop, removed를 누적한다.
+            // 변환할 때, 변환 횟수와 제거된 0의 개수를 누적한다.
+            int zeros = countZeros(s);
+            loop += 1;
+            removed += zeros;
+
+
         }
 
         return new int[] {loop, removed};
