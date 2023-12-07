@@ -26,8 +26,8 @@ public class CountPYinString {
         // 문자열에서 p의 개수를 세기 위해 문자열에서 p를 모두 제거한다.
         // 이때, 제거된 개수, 즉 원본 문자열과 p를 제거한 문자열 길이 차이가 p의 개수가 된다.
 
-        // 문자열에 등장하는 모든 "p"를 ""로 치환한다.
-        s.replace("p", "");
+        // 문자열에 등장하는 모든 "p"를 ""로 치환한다. 또한 앞서 구한 문자열의 길이를 원본 문자열의 길이에서 빼면 p의 개수를 구할 수 있다.
+        int ps = s.length() - s.replace("p", "").length();
     }
 
     public static void main(String[] args) {
