@@ -22,6 +22,12 @@ public class CountPYinString {
     boolean solution(String s) {
         // p와 y의 개수를 세기 위해 대소문자와 상관없이 문자를 비교하기 위해 문자열의 문자를 모두 소문자로 만들어준다.
         s = s.toLowerCase();
+
+        // 문자열에서 p의 개수를 세기 위해 문자열에서 p를 모두 제거한다.
+        // 이때, 제거된 개수, 즉 원본 문자열과 p를 제거한 문자열 길이 차이가 p의 개수가 된다.
+
+        // 문자열에 등장하는 모든 "p"를 ""로 치환한다.
+        s.replace("p", "");
     }
 
     public static void main(String[] args) {
