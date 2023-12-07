@@ -30,9 +30,14 @@ public class CountPYinString {
         int ps = s.length() - s.replace("p", "").length();
         // 마찬가지로 y의 개수도 구할 수 있다.
         int ys = s.length() - s.replace("y", "").length();
+
+        // 두 값을 구했으므로 비교해서 반환한다.
+        return ps == ys;
     }
 
     public static void main(String[] args) {
-
+        CountPYinString countPYinString = new CountPYinString();
+        System.out.println("Result: " + countPYinString.solution("pPoooyY"));
+        System.out.println("Result: " + countPYinString.solution("Pyy"));
     }
 }
