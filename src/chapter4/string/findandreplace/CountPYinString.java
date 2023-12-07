@@ -19,7 +19,7 @@ public class CountPYinString {
      * 3. 2와 같은 방식으로 y의 개수를 센다.
      * 4. 구한 p의 개수와 y의 개수를 비교한다.
      */
-    boolean solution(String s) {
+    boolean iterateThroughAll(String s) {
         // p와 y의 개수를 세기 위해 대소문자와 상관없이 문자를 비교하기 위해 문자열의 문자를 모두 소문자로 만들어준다.
         s = s.toLowerCase();
 
@@ -35,9 +35,33 @@ public class CountPYinString {
         return ps == ys;
     }
 
+    // 위와 같이 구현된 코드는 직접 루프를 돌며 p와 y의 개수를 세는 것보다 비효율적이다.
+    // 직접 반복문을 구현한 코드는 한 번의 순회로 끝내지만, 위와 같이 내장 메서드를 사용하면 toLowerCase()와 replace()에서 전체 순회가 발생한다.
+    // 해당 메서드들을 여러 번 호출하는 만큼 전체 순회 횟수가 많아져서 실행 시간이 늘어난다.
+
+    // 하지만 시간 복잡도 측면에서 생각해보면 다른 결과가 나온다.
+    // 문자열 길이를 n이라고 했을 때, 직접 순회하면 문자열 전체를 한 번 순회하는 데 소요되는 시간은 O(n)이다.
+    // 위와 같이 toLowerCase()와 replace()는 각각 O(n)이 소요되어 소요되는 시간은 O(n) + O(n) + O(n) = O(n)이 된다.
+    // 즉, 시간 복잡도는 두 방법 모두 동일하지만, 이는 세 번 순회하는 내장 라이브러리를 이용한 코드가 직접 순회하는 코드보다 느릴 수는 있다.
+    boolean iterateOnce(String s) {
+        int ps = 0;
+        int ys = 0;
+
+        for (char c : s.toCharArray()) {
+            switch (c) {
+                case 'p' -> ps++;
+                case 'y' -> ys++;
+            }
+        }
+        return ps == ys;
+    }
+
     public static void main(String[] args) {
         CountPYinString countPYinString = new CountPYinString();
-        System.out.println("Result: " + countPYinString.solution("pPoooyY"));
-        System.out.println("Result: " + countPYinString.solution("Pyy"));
+        System.out.println("Result: " + countPYinString.iterateThroughAll("pPoooyY"));
+        System.out.println("Result: " + countPYinString.iterateThroughAll("Pyy"));
+
+        System.out.println("Result: " + countPYinString.iterateOnce("pPoooyY"));
+        System.out.println("Result: " + countPYinString.iterateOnce("Pyy"));
     }
 }
