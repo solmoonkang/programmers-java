@@ -28,6 +28,8 @@ public class CountPYinString {
 
         // 문자열에 등장하는 모든 "p"를 ""로 치환한다. 또한 앞서 구한 문자열의 길이를 원본 문자열의 길이에서 빼면 p의 개수를 구할 수 있다.
         int ps = s.length() - s.replace("p", "").length();
+        // 마찬가지로 y의 개수도 구할 수 있다.
+        int ys = s.length() - s.replace("y", "").length();
     }
 
     public static void main(String[] args) {
